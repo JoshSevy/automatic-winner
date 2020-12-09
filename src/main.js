@@ -56,6 +56,16 @@ function changeView(event) {
     saveBtn.classList.remove('hidden');
     randomCoverBtn.classList.remove('hidden');
   }
+
+  if (event.target.className === 'view-saved-button') {
+    homeView.classList.add('hidden');
+    homeBtn.classList.remove('hidden');
+    savedView.classList.remove('hidden');
+    saveBtn.classList.add('hidden');
+    formView.classList.add('hidden');
+    randomCoverBtn.classList.add('hidden');
+
+  }
   
 }
 
