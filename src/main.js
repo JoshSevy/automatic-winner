@@ -111,6 +111,9 @@ function newRandomCover() {
 }
 
 function saveMainCover() {
+  for (let i = 0; i < savedCovers.length; i++) {
+    if ()
+  }
   savedCovers.push(currentCover);
 };
 
