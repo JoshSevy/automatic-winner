@@ -1,6 +1,6 @@
 // Create variables targetting the relevant DOM elements here 👇
 // Main Cover Display
-let mainCoverImage = document.querySelector('.cover-image')
+let mainCoverImage = document.querySelector('.cover-image');
 let mainCoverTitle = document.querySelector('.cover-title');
 let mainCoverTag1 = document.querySelector('.tagline-1');
 let mainCoverTag2 = document.querySelector('.tagline-2');
@@ -9,7 +9,7 @@ let mainCoverTag2 = document.querySelector('.tagline-2');
 
 let savedCoversSection = document.querySelector('.saved-covers-section');
 
-// Buttons 
+// Buttons
 let btnControls = document.querySelector('.controls');
 let randomCoverBtn = document.querySelector('.random-cover-button');
 let makeCoverBtn = document.querySelector('.make-new-button');
@@ -27,17 +27,16 @@ let savedView = document.querySelector('.saved-view');
 let userCover = document.querySelector('.user-cover');
 let userTitle = document.querySelector('.user-title');
 let userDesc1 = document.querySelector('.user-desc1');
-let uersDesc2 = document.querySelector('.user-desc2');
+let userDesc2 = document.querySelector('.user-desc2');
 
 // We've provided a few variables below
 var savedCovers = [
-  new Cover("http://3.bp.blogspot.com/-iE4p9grvfpQ/VSfZT0vH2UI/AAAAAAAANq8/wwQZssi-V5g/s1600/Do%2BNot%2BForsake%2BMe%2B-%2BImage.jpg", "Sunsets and Sorrows", "sunsets", "sorrows")
+  new Cover("http://3.bp.blogspot.com/-iE4p9grvfpQ/VSfZT0vH2UI/AAAAAAAANq8/wwQZssi-V5g/s1600/Do%2BNot%2BForsake%2BMe%2B-%2BImage.jpg", "Sunsets and Sorrows", "sunsets", "sorrows"),
 ];
-
 
 var currentCover = newRandomCover();
 
-displayCurrentCover()
+displayCurrentCover();
 
 // Add your event listeners here 👇
 
@@ -56,6 +55,12 @@ btnControls.addEventListener('click', function(event) {
   }
 });
 
+createBookBtn.addEventListener('click', function(event) {
+  event.preventDefault()
+  onSubmit();
+  home();
+})
+
 // Create your event handlers and other functions here 👇
 
 function changeView(event) {
@@ -71,14 +76,7 @@ function changeView(event) {
   }
 
   if (event.target.className === 'home-button') {
-    homeView.classList.remove('hidden');
-    formView.classList.add('hidden');
-    savedView.classList.add('hidden');
-
-    makeCoverBtn.classList.remove('hidden');
-    homeBtn.classList.add('hidden');
-    saveBtn.classList.remove('hidden');
-    randomCoverBtn.classList.remove('hidden');
+    home();
   }
 
   if (event.target.className === 'view-saved-button') {
@@ -94,6 +92,17 @@ function changeView(event) {
   }
 };
 
+function home() {
+  homeView.classList.remove('hidden');
+  formView.classList.add('hidden');
+   savedView.classList.add('hidden');
+
+  makeCoverBtn.classList.remove('hidden');
+  homeBtn.classList.add('hidden');
+  saveBtn.classList.remove('hidden');
+  randomCoverBtn.classList.remove('hidden');
+}
+
 function displayCurrentCover() {
   mainCoverImage.src = currentCover.cover;
   mainCoverTitle.innerHTML = currentCover.title;
@@ -103,18 +112,15 @@ function displayCurrentCover() {
 
 function newRandomCover() {
   return new Cover(
-  covers[getRandomIndex(covers)], 
-  titles[getRandomIndex(titles)], 
+  covers[getRandomIndex(covers)],
+  titles[getRandomIndex(titles)],
   descriptors[getRandomIndex(descriptors)],
   descriptors[getRandomIndex(descriptors)]
-  ); 
+  );
 }
 
 function saveMainCover() {
-  for (let i = 0; i < savedCovers.length; i++) {
-    if ()
-  }
-  savedCovers.push(currentCover);
+
 };
 
 function displaySavedCovers() {
@@ -130,10 +136,17 @@ function displaySavedCovers() {
 };
 
 function userCreatedBook() {
-  cover.push(userCover.value)
-  title.push(userTitle.value);
+  covers.push(userCover.value)
+  titles.push(userTitle.value);
   descriptors.push(userDesc1.value);
   descriptors.push(userDesc2.value);
+
+}
+
+function onSubmit() {
+  userCreatedBook();
+  currentCover = new Cover(userCover.value, userTitle.value, userDesc1.value, userDesc2.value);
+  displayCurrentCover();
 }
 
 // We've provided one function to get you started
