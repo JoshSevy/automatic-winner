@@ -58,41 +58,27 @@ btnControls.addEventListener('click', function(event) {
 createBookBtn.addEventListener('click', function(event) {
   event.preventDefault()
   onSubmit();
-  home();
+  goToHome();
 })
 
 // Create your event handlers and other functions here 👇
 
 function changeView(event) {
   if (event.target.className === 'make-new-button') {
-    homeView.classList.add('hidden');
-    formView.classList.remove('hidden');
-    savedView.classList.add('hidden');
-
-    makeCoverBtn.classList.add('hidden');
-    homeBtn.classList.remove('hidden');
-    saveBtn.classList.add('hidden');
-    randomCoverBtn.classList.add('hidden');
+    goToForm();
   }
 
   if (event.target.className === 'home-button') {
-    home();
+    goToHome();
   }
 
   if (event.target.className === 'view-saved-button') {
-    homeView.classList.add('hidden');
-    formView.classList.add('hidden');
-    savedView.classList.remove('hidden');
-
-    homeBtn.classList.remove('hidden');
-    saveBtn.classList.add('hidden');
-    randomCoverBtn.classList.add('hidden');
-
+    goToSavedCovers();
     displaySavedCovers(savedCovers);
   }
 };
 
-function home() {
+function goToHome() {
   homeView.classList.remove('hidden');
   formView.classList.add('hidden');
    savedView.classList.add('hidden');
@@ -101,6 +87,27 @@ function home() {
   homeBtn.classList.add('hidden');
   saveBtn.classList.remove('hidden');
   randomCoverBtn.classList.remove('hidden');
+}
+
+function goToForm() {
+  homeView.classList.add('hidden');
+  formView.classList.remove('hidden');
+  savedView.classList.add('hidden');
+
+  makeCoverBtn.classList.add('hidden');
+  homeBtn.classList.remove('hidden');
+  saveBtn.classList.add('hidden');
+  randomCoverBtn.classList.add('hidden');
+}
+
+function goToSavedCovers() {
+  homeView.classList.add('hidden');
+  formView.classList.add('hidden');
+  savedView.classList.remove('hidden');
+
+  homeBtn.classList.remove('hidden');
+  saveBtn.classList.add('hidden');
+  randomCoverBtn.classList.add('hidden');
 }
 
 function displayCurrentCover() {
